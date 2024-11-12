@@ -1,7 +1,7 @@
 
 # Online Learning Platform
 
-Online Learning Platform using MERN Stack
+Online Learning Platform using MERN Stack.
 
 ## Objective:
 
@@ -50,6 +50,6 @@ Develop a comprehensive online learning platform with three user types (Student,
 #### *Database:*
   - MongoDB for storing user profiles, course details, and application data.
 
-#### *Authentication:*
+##### *Authentication:*
   - JWT (JSON Web Tokens) for secure authentication.
 

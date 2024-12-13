@@ -5,50 +5,56 @@ import {
   FormLabel,
   Grid,
   Input,
-  Text,
   Textarea,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-
-import AdminNavTop from "../AdminNavTop";
-import { useDispatch, useSelector } from "react-redux";
+// Importing Redux hooks and actions
+import { useDispatch } from "react-redux";
 import { addProduct } from "../../Redux/AdminReducer/action";
+// Importing Router for navigation
 import { useNavigate } from "react-router-dom";
+// Importing custom components
+import AdminNavTop from "../AdminNavTop";
 
 const AddCourse = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch(); // Redux dispatcher to trigger actions
+  const navigate = useNavigate(); // For navigation between routes
 
+  // Initial course object
   let obj = {
     title: "",
     description: "",
     category: "",
     price: "",
-    img:""
+    img: "",
   };
 
-  const [detail, setDetail] = useState(obj);
+  const [detail, setDetail] = useState(obj); // State to manage course details
 
+  // Handle input field changes and update state
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDetail((prev) => {
       return { ...prev, [name]: value };
     });
   };
-  const handleSubmit = () => {
-    dispatch(addProduct(detail));
 
-    alert("Course Added Successfully");
-    navigate("/admin/courses");
+  // Handle form submission
+  const handleSubmit = () => {
+    dispatch(addProduct(detail)); // Dispatch the add product action
+    alert("Course Added Successfully"); // Success notification
+    navigate("/admin/courses"); // Redirect to the courses page
   };
 
   return (
-    <Grid className="Nav" h={"99vh"} w="94%" gap={10}>
-      {/* <AdminSidebar /> */}
-      <Box mt='80px'>
+    <Grid className="Nav" h="99vh" w="94%" gap={10}>
+      {/* Admin Top Navigation */}
+      <Box mt="80px">
         <AdminNavTop />
 
-        <Box border={"2px solid gray"} borderRadius={10} p={10} h="90%">
+        {/* Form Container */}
+        <Box border="2px solid gray" borderRadius={10} p={10} h="90%">
+          {/* Title Input */}
           <FormControl>
             <FormLabel>Title</FormLabel>
             <Input
@@ -59,6 +65,8 @@ const AddCourse = () => {
               onChange={handleChange}
             />
           </FormControl>
+
+          {/* Description Input */}
           <FormControl mt={4}>
             <FormLabel>Description</FormLabel>
             <Textarea
@@ -68,6 +76,8 @@ const AddCourse = () => {
               onChange={handleChange}
             />
           </FormControl>
+
+          {/* Category Input */}
           <FormControl mt={4}>
             <FormLabel>Category</FormLabel>
             <Input
@@ -78,6 +88,8 @@ const AddCourse = () => {
               onChange={handleChange}
             />
           </FormControl>
+
+          {/* Price Input */}
           <FormControl mt={4}>
             <FormLabel>Price</FormLabel>
             <Input
@@ -88,16 +100,20 @@ const AddCourse = () => {
               onChange={handleChange}
             />
           </FormControl>
+
+          {/* Thumbnail Input */}
           <FormControl mt={4}>
             <FormLabel>Thumbnail</FormLabel>
             <Input
               type="text"
               placeholder="Enter Course thumbnail Link"
               name="img"
-              value={detail?.img}
+              value={detail.img}
               onChange={handleChange}
             />
           </FormControl>
+
+          {/* Submit Button */}
           <Button
             mt={4}
             colorScheme="red"
@@ -114,3 +130,4 @@ const AddCourse = () => {
 };
 
 export default AddCourse;
+

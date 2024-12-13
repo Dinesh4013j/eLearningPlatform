@@ -9,60 +9,67 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import "./edit.css";
-import AdminNavTop from "../AdminNavTop";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { patchProduct } from "../../Redux/AdminReducer/action";
+import "./edit.css"; // Custom styles for the page
+import AdminNavTop from "../AdminNavTop"; // Admin top navigation bar
+import { useDispatch, useSelector } from "react-redux"; // For Redux state management
+import { useNavigate, useParams } from "react-router-dom"; // For navigation and getting URL params
+import { patchProduct } from "../../Redux/AdminReducer/action"; // Action to update product
 
 const EditPage = () => {
+  // Background image URL for the edit page
   const backgroundImageUrl =
     "https://png.pngtree.com/background/20211217/original/pngtree-red-round-technology-dashboard-picture-image_1598386.jpg";
 
+  // Getting the product ID from the URL parameters
   const { id } = useParams();
+
+  // Dispatch and state selection from Redux
   const dispatch = useDispatch();
   const store = useSelector((store) => store.AdminReducer.data);
-  console.log(store);
+
+  // Filtering the product data from Redux store based on the product ID
   const existedUser = store.filter((el) => el._id == id);
-  // console.log("existedUser",existedUser)
+
+  // Redirect navigation using React Router
   const navigate = useNavigate();
 
-  console.log(existedUser);
-
-  // console.log(id)
-
+  // Default object for the form based on the existing product data
   let obj = {
     title: existedUser[0]?.title,
     description: existedUser[0]?.description,
     category: existedUser[0]?.category,
     price: existedUser[0]?.price,
     teacher: existedUser[0]?.teacher,
-    img: existedUser[0]?.img || "",
+    img: existedUser[0]?.img || "", // Fallback if no image URL is present
   };
 
-  // console.log("obj",obj)
+  // State for storing the product details while editing
   const [detail, setDetail] = useState(obj);
 
+  // Handle input field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDetail((prev) => {
-      return { ...prev, [name]: value };
+      return { ...prev, [name]: value }; // Update the specific field in the state
     });
   };
 
+  // Handle form submission to update the product
   const handleSubmit = () => {
-    //  console.log(detail);
-    dispatch(patchProduct(id, detail));
-    alert("Data Updated Successfully");
-    navigate("/admin/courses");
+    dispatch(patchProduct(id, detail)); // Dispatch the patch action to update the product
+    alert("Data Updated Successfully"); // Show a success message
+    navigate("/admin/courses"); // Navigate back to the courses list
   };
 
   return (
     <Grid className="Nav" h={"99vh"} w="94%" gap={10}>
       {/* <AdminSidebar/>  */}
-      <Box mt='80px'>
-        <AdminNavTop />
-        {/*  */}
+
+      {/* Main content container */}
+      <Box mt="80px">
+        <AdminNavTop /> {/* Admin top navigation bar */}
+
+        {/* Form container with a background image */}
         <Flex
           align="center"
           justify="center"
@@ -77,10 +84,12 @@ const EditPage = () => {
             width: "100vw",
             height: "100vh",
           }}
-          color="white"
+          color="white" // Text color white for contrast
           fontWeight={"bold"}
         >
+          {/* Form box with responsive width */}
           <Box width={["100%", "80%", "60%", "40%"]} p={4}>
+            {/* Form to edit product details */}
             <FormControl>
               <FormLabel>Course Title</FormLabel>
               <Input
@@ -145,12 +154,13 @@ const EditPage = () => {
               />
             </FormControl>
 
+            {/* Submit button */}
             <Button
               mt={4}
               colorScheme="red"
               size="md"
               isFullWidth
-              onClick={handleSubmit}
+              onClick={handleSubmit} // Calls the handleSubmit function when clicked
             >
               Submit
             </Button>

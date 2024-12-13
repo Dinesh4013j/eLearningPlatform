@@ -5,20 +5,22 @@ import {
   FormLabel,
   Grid,
   Input,
-  Text,
   Textarea,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-
+// Importing Admin navigation component
 import AdminNavTop from "../AdminNavTop";
-import { useDispatch, useSelector } from "react-redux";
+// Importing Redux hooks and actions
+import { useDispatch } from "react-redux";
 import { addUser } from "../../Redux/AdminReducer/action";
+// Importing navigation hook
 import { useNavigate } from "react-router-dom";
 
 const AddUser = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch(); // Initialize dispatch for Redux actions
+  const navigate = useNavigate(); // Hook to handle route navigation
 
+  // Initial state for user details
   let obj = {
     name: "",
     email: "",
@@ -29,43 +31,44 @@ const AddUser = () => {
     image: "",
   };
 
-  const [detail, setDetail] = useState(obj);
+  const [detail, setDetail] = useState(obj); // State to manage user details form
 
+  // Handler for updating the state as the user types in the form fields
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDetail((prev) => {
-      return { ...prev, [name]: value };
+      return { ...prev, [name]: value }; // Update the specific field in the object
     });
   };
+
+  // Handler for submitting the form
   const handleSubmit = () => {
-    dispatch(addUser(detail));
-    alert("User Added Successfully");
-    navigate("/admin/users");
+    dispatch(addUser(detail)); // Dispatch the `addUser` action with the form data
+    alert("User Added Successfully"); // Notify the user of successful addition
+    navigate("/admin/users"); // Redirect to the admin users page
   };
 
   return (
     <Grid className="Nav" h={"99vh"} w="94%" gap={10}>
-      {/* <AdminSidebar/>  */}
-      <Box  mt="80px">
+      {/* Top navigation for Admin */}
+      <Box mt="80px">
         <AdminNavTop />
 
-        <Box
-         
-          border={"2px solid gray"}
-          borderRadius={10}
-          p={10}
-          h="90%"
-        >
+        {/* Form container with border and padding */}
+        <Box border={"2px solid gray"} borderRadius={10} p={10} h="90%">
+          {/* Name Input */}
           <FormControl>
             <FormLabel>Name</FormLabel>
             <Input
               type="text"
-              placeholder="Enter Course Title"
+              placeholder="Enter User Name"
               name="name"
               value={detail.name}
               onChange={handleChange}
             />
           </FormControl>
+
+          {/* Email Input */}
           <FormControl mt={4}>
             <FormLabel>Email</FormLabel>
             <Textarea
@@ -76,6 +79,8 @@ const AddUser = () => {
               onChange={handleChange}
             />
           </FormControl>
+
+          {/* Password Input */}
           <FormControl mt={4}>
             <FormLabel>Password</FormLabel>
             <Input
@@ -86,6 +91,8 @@ const AddUser = () => {
               onChange={handleChange}
             />
           </FormControl>
+
+          {/* City Input */}
           <FormControl mt={4}>
             <FormLabel>City</FormLabel>
             <Input
@@ -96,6 +103,8 @@ const AddUser = () => {
               onChange={handleChange}
             />
           </FormControl>
+
+          {/* Age Input */}
           <FormControl mt={4}>
             <FormLabel>Age</FormLabel>
             <Input
@@ -106,6 +115,8 @@ const AddUser = () => {
               onChange={handleChange}
             />
           </FormControl>
+
+          {/* Job Input */}
           <FormControl mt={4}>
             <FormLabel>Job</FormLabel>
             <Input
@@ -116,6 +127,8 @@ const AddUser = () => {
               onChange={handleChange}
             />
           </FormControl>
+
+          {/* Image URL Input */}
           <FormControl mt={4}>
             <FormLabel>Image</FormLabel>
             <Input
@@ -126,6 +139,8 @@ const AddUser = () => {
               onChange={handleChange}
             />
           </FormControl>
+
+          {/* Submit Button */}
           <Button
             mt={4}
             colorScheme="red"
@@ -142,3 +157,4 @@ const AddUser = () => {
 };
 
 export default AddUser;
+

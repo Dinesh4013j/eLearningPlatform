@@ -21,73 +21,88 @@ import convertDateFormat, {
 import Pagination from "./Pagination";
 import AdminNavTop from "../AdminNavTop";
 
+// Users component to display user details with sorting, searching, and pagination
 const Users = () => {
+  // Redux selectors to get user data and dispatch actions
   const store = useSelector((store) => store.AdminReducer.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
-  const [order, setOrder] = useState("");
-  const limit = 4;
 
-  // console.log(store,"storeAll")
+  // State variables for pagination, search, and sorting
+  const [page, setPage] = useState(1); // Current page
+  const [search, setSearch] = useState(""); // Search query
+  const [order, setOrder] = useState(""); // Sorting order (ascending or descending)
+  const limit = 4; // Number of users per page
 
+  // Handle search input change
   const handleSearch = (e) => {
-    setSearch(e.target.value);
+    setSearch(e.target.value); // Update the search state
   };
-  // console.log(search)
 
+  // Handle sorting selection
   const handleSelect = (e) => {
-    const { value } = e.target;
-    setOrder(value);
+    const { value } = e.target; // Get the selected value (asc or desc)
+    setOrder(value); // Update the order state
   };
-  // console.log(order)
 
+  // Fetch users on page change
   useEffect(() => {
-    dispatch(getUser(page, limit));
-  }, [page]);
+    dispatch(getUser(page, limit)); // Dispatch the action to fetch users
+  }, [page]); // Re-run this effect when the page changes
 
+  // Handle user deletion
   const handleDelete = (id, name) => {
-    //  console.log(id)
-    dispatch(deleteUsers(id));
-    alert(`${name} is Deleted`);
+    dispatch(deleteUsers(id)); // Dispatch the delete action
+    alert(`${name} is Deleted`); // Show confirmation alert
   };
 
+  // Handle page change through pagination buttons
   const handlePageChange = (page) => {
-    setPage(page);
+    setPage(page); // Update the page state
   };
-  // console.log(store.length)
+
+  // Handle previous and next page button clicks
+  const handlePageButton = (val) => {
+    setPage((prev) => prev + val); // Adjust the page state by +1 or -1
+  };
+
+  // Total number of pages (assuming 2 pages for simplicity in this example)
   const count = 2;
 
-  const handlePageButton = (val) => {
-    setPage((prev) => prev + val);
-  };
-
   return (
+    // Main grid container for the Users page
     <Grid className="Nav" h={"99vh"} w="94%" gap={10}>
-      {/* <AdminSidebar/>  */}
-      <Box mt='80px'>
+      <Box mt="80px">
+        {/* Admin navigation component */}
         <AdminNavTop handleSearch={handleSearch} />
-        {/*  */}
+
+        {/* User details section with sorting and create new user link */}
         <Box>
           <Grid
             templateColumns={{
-              xl: "repeat(3,20% 60% 20%)",
-              lg: "repeat(3,20% 60% 20%)",
-              base: "repeat(1,1fr)",
+              xl: "repeat(3,20% 60% 20%)", // Layout for larger screens (3 columns)
+              lg: "repeat(3,20% 60% 20%)", // Layout for medium screens
+              base: "repeat(1,1fr)", // Layout for mobile screens (1 column)
             }}
             gap={{ xl: 0, lg: 0, base: 7 }}
             m={3}
           >
+            {/* Title for the section */}
             <Text fontWeight={"bold"}>User Details</Text>
+
+            {/* Sort by age dropdown */}
             <Select w={"80%"} onChange={handleSelect}>
               <option value="asc">Age Sort in Ascending Order</option>
               <option value="desc">Age Sort in Descending Order</option>
             </Select>
+
+            {/* Link to add a new user */}
             <Box fontWeight={"bold"}>
               <Link to="/admin/users/add">Create</Link>
             </Box>
           </Grid>
+
+          {/* Table for displaying user information */}
           <Box
             w={{ xl: "100%", lg: "90%", md: "80%", base: "80%" }}
             maxWidth="100%"
@@ -95,6 +110,7 @@ const Users = () => {
           >
             <Table variant="striped" borderRadius="md" w="100%">
               <Thead>
+                {/* Table header */}
                 <Tr>
                   <Th>Name</Th>
                   <Th>Role</Th>
@@ -104,6 +120,7 @@ const Users = () => {
                   <Th>Subscribed Course</Th>
                 </Tr>
               </Thead>
+              {/* Display each user in the table */}
               {store?.length > 0 &&
                 store?.map((el, i) => {
                   return (
@@ -116,6 +133,7 @@ const Users = () => {
                         <Td>{el.age}</Td>
                         <Td>{el.course.length}</Td>
                         <Box>
+                          {/* Delete and Edit buttons for each user */}
                           <Button onClick={() => handleDelete(el._id, el.name)}>
                             Delete
                           </Button>
@@ -135,14 +153,16 @@ const Users = () => {
                 })}
             </Table>
           </Box>
+
+          {/* Pagination controls */}
           <Box textAlign={{ xl: "right", lg: "right", base: "left" }}>
             <Button disabled={page <= 1} onClick={() => handlePageButton(-1)}>
               Prev
             </Button>
             <Pagination
-              totalCount={count}
-              current_page={page}
-              handlePageChange={handlePageChange}
+              totalCount={count} // Total pages
+              current_page={page} // Current page number
+              handlePageChange={handlePageChange} // Page change handler
             />
             <Button
               disabled={page >= count}
@@ -157,4 +177,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Users; // Export the Users component

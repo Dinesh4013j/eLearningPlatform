@@ -14,49 +14,48 @@ import { AddIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import convertDateFormat, {
   deleteProduct,
-  getProduct,
   getvideo,
 } from "../../Redux/AdminReducer/action";
 import Pagination from "./Pagination";
 import AdminNavTop from "../AdminNavTop";
 
 const GetVideos = () => {
-  const store = useSelector((store) => store.AdminReducer.videos);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [page, setPage] = useState(1);
-  const limit = 4;
+  const store = useSelector((store) => store.AdminReducer.videos); // Fetch videos from Redux store
+  const dispatch = useDispatch(); // Access to Redux dispatch
+  const navigate = useNavigate(); // Access to navigation functions
+  const [page, setPage] = useState(1); // State for current page
+  const limit = 4; // Limit of items per page
 
-  const user = JSON.parse(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem('user')); // Get user info from localStorage
 
+  // Fetch videos when page or limit changes
   useEffect(() => {
     dispatch(getvideo(page, limit, user));
-  }, [page, limit]);
+  }, [page, limit, dispatch, user]);
 
+  // Handle video deletion
   const handleDelete = (id, title) => {
-    // console.log(id)
-    dispatch(deleteProduct(id));
-    alert(`${title} is Deleted`);
+    dispatch(deleteProduct(id)); // Dispatch the delete action
+    alert(`${title} is Deleted`); // Notify user
   };
 
+  // Handle page change via pagination component
   const handlePageChange = (page) => {
-    setPage(page);
+    setPage(page); // Set the current page
   };
 
-  const count = Math.ceil(store.length / limit);
-  //  console.log(count)
-  // console.log(count)
+  const count = Math.ceil(store.length / limit); // Calculate total page count based on store length
 
+  // Handle "Prev" and "Next" page navigation
   const handlePageButton = (val) => {
     setPage((prev) => prev + val);
   };
 
   return (
     <Grid className="Nav" h={"99vh"} w="94%" gap={10}>
-      {/* <AdminSidebar/>  */}
-      <Box mt='80px'>
-        <AdminNavTop />
-        {/*  */}
+      <Box mt="80px">
+        <AdminNavTop /> {/* Admin navigation bar */}
+
         <Box>
           <Text fontWeight={"bold"} m={5}>
             Courses Video
@@ -100,6 +99,8 @@ const GetVideos = () => {
                 })}
             </Table>
           </Box>
+
+          {/* Pagination controls */}
           <Box textAlign={{ xl: "right", lg: "right", base: "left" }}>
             <Button disabled={page <= 1} onClick={() => handlePageButton(-1)}>
               Prev

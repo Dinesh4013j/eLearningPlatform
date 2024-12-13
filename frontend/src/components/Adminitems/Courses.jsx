@@ -10,7 +10,7 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 import { AddIcon, EditIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,56 +20,62 @@ import convertDateFormat, {
 } from "../../Redux/AdminReducer/action";
 import Pagination from "./Pagination";
 import AdminNavTop from "../AdminNavTop";
-import Navbar from "../UserComponents/UserNavbar";
 
 const Courses = () => {
-  const store = useSelector((store) => store.AdminReducer.data);
-  const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
-  const [order, setOrder] = useState("");
-  const limit = 4;
+  const store = useSelector((store) => store.AdminReducer.data); // Fetch the courses from Redux store
+  const dispatch = useDispatch(); // Initialize Redux dispatch
+  const [page, setPage] = useState(1); // Current page number
+  const [search, setSearch] = useState(""); // Search query
+  const [order, setOrder] = useState(""); // Order sorting (asc/desc)
+  const limit = 4; // Number of courses per page
+
+  // Responsive table and grid sizes
   const tableSize = useBreakpointValue({ base: "sm", sm: "md", md: "lg" });
   const courseSize = useBreakpointValue({ base: "md", sm: "lg", md: "xl" });
 
+  // Handle search input changes
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    // console.log(search)
   };
+
+  // Handle sorting order selection
   const handleSelect = (e) => {
     const { value } = e.target;
     setOrder(value);
   };
-  // console.log(order)
 
+  // Fetch products whenever page, search, order, or limit changes
   useEffect(() => {
     dispatch(getProduct(page, limit, search, order));
   }, [page, search, order, limit]);
 
+  // Handle deletion of a course
   const handleDelete = (id, title) => {
-    // console.log(id)
-    dispatch(deleteProduct(id));
+    dispatch(deleteProduct(id)); // Dispatch action to delete the course
     alert(`${title} is Deleted`);
   };
 
+  // Handle page changes
   const handlePageChange = (page) => {
     setPage(page);
   };
-  // console.log("store.length",store.length)
-  const count = 4;
-  // console.log("count",count)
 
+  // Handle previous/next page buttons
   const handlePageButton = (val) => {
     setPage((prev) => prev + val);
   };
 
+  const count = 4; // Total number of pages (hardcoded for example)
+
   return (
     <Grid className="Nav" h={"99vh"} w="94%" gap={10}>
-      {/* <AdminSidebar/>  */}
-      <Box mt='90px'>
-          <AdminNavTop handleSearch={handleSearch} />
-        {/*  */}
+      <Box mt="90px">
+        {/* Admin top navigation with a search bar */}
+        <AdminNavTop handleSearch={handleSearch} />
+
+        {/* Main Courses section */}
         <Box className={`course ${courseSize}`}>
+          {/* Sorting and Add Course link */}
           <Grid
             templateColumns={{
               xl: "repeat(3,20% 60% 20%)",
@@ -87,6 +93,8 @@ const Courses = () => {
               <Link to="/admin/addCourse">Create</Link>
             </Box>
           </Grid>
+
+          {/* Courses Table */}
           <Box
             w={{ xl: "100%", lg: "90%", md: "80%", base: "80%" }}
             overflowX="auto"
@@ -119,16 +127,19 @@ const Courses = () => {
                         <Td>{el.price}</Td>
                         <Td>{el.teacher}</Td>
                         <Box>
+                          {/* Delete Button */}
                           <Button
                             onClick={() => handleDelete(el._id, el.title)}
                           >
                             Delete
                           </Button>
+
+                          {/* Edit Button */}
                           <Link to={`/admin/edit/${el._id}`}>
                             <ButtonGroup size="sm" isAttached variant="outline">
                               <Button>Edit</Button>
                               <IconButton
-                                aria-label="Add to friends"
+                                aria-label="Edit"
                                 icon={<EditIcon />}
                               />
                             </ButtonGroup>
@@ -140,6 +151,8 @@ const Courses = () => {
                 })}
             </Table>
           </Box>
+
+          {/* Pagination Section */}
           <Box textAlign={{ xl: "right", lg: "right", base: "left" }}>
             <Button disabled={page <= 1} onClick={() => handlePageButton(-1)}>
               Prev
@@ -163,3 +176,4 @@ const Courses = () => {
 };
 
 export default Courses;
+

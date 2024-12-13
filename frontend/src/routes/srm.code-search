@@ -1,0 +1,138 @@
+# Query: srm
+# ContextLines: 1
+
+40 results - 14 files
+
+backend\index.js:
+  45    try{
+  46:     res.status(200).json({message:"Welcome to learnado's Backend"})
+  47    }catch(err){
+
+backend\package-lock.json:
+   688        "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz",
+   689:       "integrity": "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==",
+   690        "dependencies": {
+
+  2461        "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz",
+  2462:       "integrity": "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==",
+  2463        "requires": {
+
+backend\middlewares\users.middleware.js:
+  11        }
+  12:       const decoded = jwt.verify(token, "learnado");
+  13        if (decoded) {
+
+backend\routes\users.routes.js:
+  103            { userId: user._id, user: user.name, role: user.role },
+  104:           "learnado",
+  105            {
+
+  110            { userId: user._id, user: user.name },
+  111:           "learnado",
+  112            {
+
+frontend\package-lock.json:
+   6340        "resolved": "https://registry.npmjs.org/acorn/-/acorn-7.4.1.tgz",
+   6341:       "integrity": "sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==",
+   6342        "bin": {
+
+   6665        "resolved": "https://registry.npmjs.org/asap/-/asap-2.0.6.tgz",
+   6666:       "integrity": "sha512-BSHWgDSAiKs50o2Re8ppvp3seVHXSRM44cdSsT9FfNEUUZLOGWVCsiWaRPWM1Znn+mqZ1OfVZ3z3DWEzSp7hRA=="
+   6667      },
+
+   7366        "resolved": "https://registry.npmjs.org/chart.js/-/chart.js-4.3.0.tgz",
+   7367:       "integrity": "sha512-ynG0E79xGfMaV2xAHdbhwiPLczxnNNnasrmPEXriXsPJGjmhOBYzFVEsB65w2qMDz+CaBJJuJD0inE/ab/h36g==",
+   7368        "dependencies": {
+
+   7408        "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz",
+   7409:       "integrity": "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==",
+   7410        "dependencies": {
+
+   9597        "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz",
+   9598:       "integrity": "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==",
+   9599        "dependencies": {
+
+  23879            "resolved": "https://registry.npmjs.org/acorn/-/acorn-7.4.1.tgz",
+  23880:           "integrity": "sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A=="
+  23881          }
+
+  24114        "resolved": "https://registry.npmjs.org/asap/-/asap-2.0.6.tgz",
+  24115:       "integrity": "sha512-BSHWgDSAiKs50o2Re8ppvp3seVHXSRM44cdSsT9FfNEUUZLOGWVCsiWaRPWM1Znn+mqZ1OfVZ3z3DWEzSp7hRA=="
+  24116      },
+
+  24628        "resolved": "https://registry.npmjs.org/chart.js/-/chart.js-4.3.0.tgz",
+  24629:       "integrity": "sha512-ynG0E79xGfMaV2xAHdbhwiPLczxnNNnasrmPEXriXsPJGjmhOBYzFVEsB65w2qMDz+CaBJJuJD0inE/ab/h36g==",
+  24630        "requires": {
+
+  24656            "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz",
+  24657:           "integrity": "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==",
+  24658            "requires": {
+
+  26263            "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz",
+  26264:           "integrity": "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==",
+  26265            "requires": {
+
+frontend\src\components\NavBarDrawer.jsx:
+  111                >
+  112:                 learnado
+  113                </Text>
+
+frontend\src\components\singlePageComps\SingleAbsolute.jsx:
+  51            <h3 className="font-serif font-bold max-w-[250px] py-1 ">
+  52:             Subscribe to learnado's top courses
+  53            </h3>
+
+frontend\src\components\UserComponents\UserNavbar.jsx:
+   70              >
+   71:               learnado 
+   72              </Text>
+
+  168                >
+  169:                 {user.role!=='teacher' && user.role!=='admin' && 'Teach On learnado'}            
+  170                </Link>
+
+frontend\src\components\UserComponents\UserSlider.jsx:
+  35    const indexDescription = [
+  36:     "learnado encourages collaborative group studies, creating a vibrant learning environment where students can connect and learn together. It offers a versatile platform for educators to share their knowledge, helping students excel academically.",
+  37:     "Secure your degree from renowned institutes with learnado's comprehensive education solutions. learnado provides access to globally recognized institutions, ensuring students receive quality education and gain valuable qualifications for their future careers.",
+  38:     "learnado unlocks access to prestigious educational institutions, elevating your academic journey to new heights. With learnado, you can explore a world of educational opportunities, expanding your knowledge and skills in various fields.",
+  39:     "Experience dynamic online classes on learnado's intuitive platform, tailored to modern learners' needs. learnado's user-friendly interface and interactive features make online learning engaging and effective, helping students succeed in today's digital age.",
+  40:     "Access meticulously crafted study notes on learnado to enhance your understanding and retention of course materials. learnado's comprehensive study resources empower students to excel in their studies and gain a deeper understanding of their subjects.",
+  41:     "learnado is your gateway to a successful career, offering the knowledge and skills needed for professional excellence. With learnado, you can prepare for a bright future and achieve your career goals through high-quality education and training."
+  42    ];
+
+frontend\src\Pages\Footer.jsx:
+  387            <Text fontSize="13.5px">
+  388:             © 2023 learnado Inc. All rights reserved.
+  389            </Text>
+
+frontend\src\Pages\Navbar.jsx:
+  57              >
+  58:               learnado 
+  59              </Text>
+
+frontend\src\Pages\LandingPageComponents\Section1.jsx:
+  38          >
+  39:           <Text fontSize='2rem' color="#0056d2" display='inline'>learnado</Text> Where Educators and Students Connect Seamlessly Online. Teachers craft personalized courses for various subjects and grades, while students explore and purchase courses tailored to their needs. Empowering both educators and learners, learnado revolutionizes online education.
+  40          </Text>
+
+  77            >
+  78:             Try learnado for Business
+  79            </Button>
+
+frontend\src\Pages\LandingPageComponents\Section6.jsx:
+  54          >
+  55:           Learner outcomes on <b style={{ color: "#0056d2" }}>learnado</b>
+  56          </Text>
+
+  64          >
+  65:           According to the latest findings from learnado's 2023 report,{" "}
+  66            <span>
+  67              <b>an impressive 87% of learners have reported tangible career benefits.</b>
+  68:           </span> These include promotions, enhanced job performance, successful job transitions, increased employability, and skill development. learnado's extensive curriculum and industry-recognized certifications have played a pivotal role in facilitating the professional growth of learners, equipping them to thrive in today's fiercely competitive job landscape."
+  69          </Text>
+
+frontend\src\Pages\Payment\Payment.js:
+  163                      <Text fontSize="12px">
+  164:                       learnado is required by law to collect applicable transaction
+  165                        taxes for purchases made in certain tax jurisdications.

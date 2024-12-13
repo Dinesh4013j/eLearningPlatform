@@ -5,10 +5,10 @@ import Chart from "chart.js/auto";
 import AdminNavTop from "../AdminNavTop";
 import { BiMale } from "react-icons/bi";
 import { FaVideo } from "react-icons/fa";
-import { FiBook } from "react-icons/fi";
-import { FiFilm } from "react-icons/fi";
+import { FiBook, FiFilm } from "react-icons/fi";
 
 const DashBoard = () => {
+  // Bar chart data for monthly sales
   const data = {
     labels: ["January", "February", "March", "April", "May", "June"],
     datasets: [
@@ -21,6 +21,8 @@ const DashBoard = () => {
       },
     ],
   };
+
+  // Pie chart data for course categories
   const datapie = {
     labels: ["Full Stack", "Frontend", "Backend"],
     datasets: [
@@ -31,6 +33,8 @@ const DashBoard = () => {
       },
     ],
   };
+
+  // Pie chart data for video categories
   const datapie1 = {
     labels: ["live", "recorded", "offline"],
     datasets: [
@@ -44,24 +48,32 @@ const DashBoard = () => {
 
   return (
     <Box>
+      {/* Top-level container for navigation and dashboard content */}
       <Grid className="Nav" h={"99vh"} w="94%" gap={10}>
+        {/* Navigation Section */}
         <Box>
-          {/* <AdminSidebar /> */}
+          {/* Admin Sidebar (commented out for now) */}
         </Box>
-        <Box mt='80px'>
+
+        {/* Dashboard Content Section */}
+        <Box mt="80px">
+          {/* Top Navigation Bar */}
           <AdminNavTop />
-          {/*  */}
+
+          {/* Main Dashboard Area */}
           <Box h={"130vh"} p={5}>
+            {/* Statistics Cards */}
             <Grid
               templateColumns={{
-                xl: "repeat(4,1fr)",
-                lg: "repeat(2,1fr)",
-                base: "repeat(1,50vh)",
+                xl: "repeat(4,1fr)", // 4 columns on extra-large screens
+                lg: "repeat(2,1fr)", // 2 columns on large screens
+                base: "repeat(1,50vh)", // 1 column on small screens
               }}
               gap={10}
               boxShadow="xl"
               rounded="md"
             >
+              {/* Total Subscribers Card */}
               <Box border={"2px solid gray"} borderRadius={10} p={5}>
                 <Flex justify={"space-between"}>
                   <Text fontWeight={"bold"}>Total Subscriber</Text>
@@ -73,6 +85,8 @@ const DashBoard = () => {
                   <Text>Since last month</Text>
                 </Flex>
               </Box>
+
+              {/* Total Videos Card */}
               <Box border={"2px solid gray"} borderRadius={10} p={5}>
                 <Flex justify={"space-between"}>
                   <Text fontWeight={"bold"}>Total Videos</Text>
@@ -84,6 +98,8 @@ const DashBoard = () => {
                   <Text>Since last month</Text>
                 </Flex>
               </Box>
+
+              {/* Total Courses Card */}
               <Box border={"2px solid gray"} borderRadius={10} p={5}>
                 <Flex justify={"space-between"}>
                   <Text fontWeight={"bold"}>Total Courses</Text>
@@ -95,6 +111,8 @@ const DashBoard = () => {
                   <Text>Since last month</Text>
                 </Flex>
               </Box>
+
+              {/* Total Watch Time Card */}
               <Box border={"2px solid gray"} borderRadius={10} p={5}>
                 <Flex justify={"space-between"}>
                   <Text fontWeight={"bold"}>Total WatchTime</Text>
@@ -107,11 +125,9 @@ const DashBoard = () => {
                 </Flex>
               </Box>
             </Grid>
-            {/* bar graph */}
-            <Flex
-              align={{ xl: "center", lg: "center", base: "left" }}
-              minHeight="60vh"
-            >
+
+            {/* Bar Chart Section */}
+            <Flex align={{ xl: "center", lg: "center", base: "left" }} minHeight="60vh">
               <Box
                 p={{ xl: 4, lg: 4, base: 0 }}
                 boxShadow="md"
@@ -125,45 +141,39 @@ const DashBoard = () => {
                 </Box>
               </Box>
             </Flex>
-            {/* Bar graph Ends */}
 
-            {/* Pie graph */}
+            {/* Pie Charts Section */}
             <Grid
               templateColumns={{
-                xl: "repeat(2,1fr)",
+                xl: "repeat(2,1fr)", // 2 columns on large screens
                 lg: "repeat(2,1fr)",
-                base: "repeat(1,1fr)",
+                base: "repeat(1,1fr)", // 1 column on small screens
               }}
             >
+              {/* Courses Pie Chart */}
               <Flex align="center" justify="center" maxHeight="60vh">
                 <Box p={4} boxShadow="md">
                   <Text fontSize="xl" fontWeight="bold" mb={4}>
                     Courses
                   </Text>
                   <Box height="300px">
-                    <Pie
-                      data={datapie}
-                      options={{ maintainAspectRatio: false }}
-                    />
+                    <Pie data={datapie} options={{ maintainAspectRatio: false }} />
                   </Box>
                 </Box>
               </Flex>
 
+              {/* Videos Category Pie Chart */}
               <Flex align="center" justify="center" maxHeight="60vh">
                 <Box p={4} boxShadow="md">
                   <Text fontSize="xl" fontWeight="bold" mb={4}>
                     Videos Category
                   </Text>
                   <Box height="300px">
-                    <Pie
-                      data={datapie1}
-                      options={{ maintainAspectRatio: false }}
-                    />
+                    <Pie data={datapie1} options={{ maintainAspectRatio: false }} />
                   </Box>
                 </Box>
               </Flex>
             </Grid>
-            {/* Pie graph end */}
           </Box>
         </Box>
       </Grid>
